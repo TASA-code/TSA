@@ -1,3 +1,8 @@
+# Preliminary Heat Simulation and Analysis (PTSA)
+## (PTSA initialise)
+Preliminary Heat Simulation and Analysis (PTSA) is preliminary package that offers an insight on the diffusivity of thermal conduction through user defined boundary conditions and heat source. 
+
+```
 TITLE INPUT.txt
 
 MODE  thermal
@@ -26,7 +31,14 @@ SETTINGS
         dW      0.05
         option  'instant'
 END
+```
+
+# Results 
+<p align="center">
+  <img src="MATLAB/output/3D_surf.png" width="400">
+  <img src="MATLAB/output/contour.png" width="400">
+</p>
 
 
-
-
+> [!IMPORTANT]  
+> This is still an on-going work as more feature will be added into PTSA in future releases. 
