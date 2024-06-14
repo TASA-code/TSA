@@ -1,0 +1,29 @@
+TITLE INPUT.txt
+
+MODE  thermal
+MODEL 
+        NAME    FS9
+        L       2.0
+        W       2.0
+        alpha   9.7e-5
+        
+END
+BC
+        T_init    393.15
+        BC1      [0.4, 0.4, 700]
+        BC2      [0.3, 0.3, 510]
+        BC3      [0.7, 0.7, 620]     
+        BC4      [0.1, 0.1, 800]    
+END
+
+SETTINGS
+        simT    60
+        dt      0.1
+        dL      0.05
+        dW      0.05
+
+END
+
+
+
+
