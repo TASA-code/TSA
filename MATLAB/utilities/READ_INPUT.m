@@ -105,12 +105,10 @@ function INPUT = READ_INPUT(filename)
 
     if strcmp(option_matches, 'instant')
         if ~isempty(option_matches)
-            INPUT.SETTINGS.option = 1;
-        end
-    else
-        if ~isempty(option_matches)
             INPUT.SETTINGS.option = 0;
         end
+    else
+        INPUT.SETTINGS.option = 1;
     end
     
 

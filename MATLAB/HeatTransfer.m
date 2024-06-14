@@ -4,12 +4,12 @@ function HeatTransfer(DATA)
     % Width
     w = DATA.MODEL.W;
     dw = DATA.SETTINGS.dW;
-    Lw = w/dw;
+    Lw = round(w/dw);
     
     % Height
     h = DATA.MODEL.L;
     dh = DATA.SETTINGS.dL;
-    Lh = h/dh;
+    Lh = round(h/dh);
     
     % Timestep
     dt = DATA.SETTINGS.dt;
@@ -27,8 +27,8 @@ function HeatTransfer(DATA)
 
 
     % Meshgrid setup
-    x = linspace(0,w,40);
-    y = linspace(0,h,40);
+    x = linspace(0,w,Lw);
+    y = linspace(0,h,Lh);
     [X, Y] = meshgrid(x,y);
 
     % filename = 'result.mp4';
