@@ -1,9 +1,9 @@
-# Preliminary Heat Simulation and Analysis (PTSA)
+# Thermal Simulation and Analysis (TSA)
 ## (PTSA initialise)
-Preliminary Heat Simulation and Analysis (PTSA) is preliminary package that offers an insight on the diffusivity of thermal conduction through user defined boundary conditions and heat source. 
+Thermal Simulation and Analysis (TSA) is preliminary package that offers an insight on the diffusivity of thermal conduction through user defined boundary conditions and heat source. 
 
 > [!IMPORTANT]  
-> The C++ version of PTSA is still under debug phase and will be released after the problems are resolved.
+> The C++ version of TSA is still under debug phase and will be released after the problems are resolved.
 
 ```
 TITLE INPUT.txt
@@ -44,4 +44,4 @@ END
 
 
 > [!IMPORTANT]  
-> This is still an on-going work as more feature will be added into PTSA in future releases. 
+> This is still an on-going work as more feature will be added into TSA in future releases. 
