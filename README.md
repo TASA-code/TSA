@@ -1,5 +1,5 @@
 # Thermal Simulation and Analysis (TSA)
-## (PTSA initialise)
+## (TSA initialise)
 Thermal Simulation and Analysis (TSA) is preliminary package that offers an insight on the diffusivity of thermal conduction through user defined boundary conditions and heat source. 
 
 > [!IMPORTANT]  
