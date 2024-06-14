@@ -17,6 +17,4 @@ addpath(genpath(pwd))
 DATA = READ_INPUT('INPUT.txt');
 structdisp(DATA);
 
-
-
 HeatTransfer(DATA);

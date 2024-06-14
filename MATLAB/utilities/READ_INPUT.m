@@ -15,7 +15,7 @@ function INPUT = READ_INPUT(filename)
     INPUT.MODE      = '';
     INPUT.MODEL     = struct('NAME', '', 'L', '', 'W', '', 'alpha', '');
     INPUT.BC        = struct('T_init', '', 'conditions', {{}});
-    INPUT.SETTINGS  = struct('simT', '', 'dt', '', 'dL', '', 'dW', '');
+    INPUT.SETTINGS  = struct('simT', '', 'dt', '', 'dL', '', 'dW', '', 'option', '');
 
     
     % Define patterns to match each section
@@ -33,24 +33,26 @@ function INPUT = READ_INPUT(filename)
     patterns.dt       = 'dt\s+([\d.]+)';
     patterns.dL       = 'dL\s+([\d.]+)';
     patterns.dW       = 'dW\s+([\d.]+)';
-
+    patterns.option   = 'option\s+''(\w+)''';
+            
+            
 
 
     % Match and extract each section using regular expressions
-    INPUT.MODE          = regexp(file_content, patterns.mode, 'tokens', 'once');
-    INPUT.MODEL.NAME    = regexp(file_content, patterns.name, 'tokens', 'once');
-    L_matches           = regexp(file_content, patterns.length, 'tokens', 'once');
-    W_matches           = regexp(file_content, patterns.width, 'tokens', 'once');
-    alpha_matches       = regexp(file_content, patterns.alpha, 'tokens', 'once');
+    INPUT.MODE         = regexp(file_content, patterns.mode, 'tokens', 'once');
+    INPUT.MODEL.NAME   = regexp(file_content, patterns.name, 'tokens', 'once');
+    L_matches          = regexp(file_content, patterns.length, 'tokens', 'once');
+    W_matches          = regexp(file_content, patterns.width, 'tokens', 'once');
+    alpha_matches      = regexp(file_content, patterns.alpha, 'tokens', 'once');
 
-    Tinit_matches       = regexp(file_content, patterns.T_init, 'tokens', 'once');
-    bc_matches          = regexp(file_content, patterns.bc, 'tokens');
+    Tinit_matches      = regexp(file_content, patterns.T_init, 'tokens', 'once');
+    bc_matches         = regexp(file_content, patterns.bc, 'tokens');
 
-    time_matches        = regexp(file_content, patterns.simT, 'tokens', 'once');
-    dt_matches          = regexp(file_content, patterns.dt, 'tokens', 'once');
-    dL_matches          = regexp(file_content, patterns.dL, 'tokens', 'once');
-    dW_matches          = regexp(file_content, patterns.dW, 'tokens', 'once');
-
+    time_matches       = regexp(file_content, patterns.simT, 'tokens', 'once');
+    dt_matches         = regexp(file_content, patterns.dt, 'tokens', 'once');
+    dL_matches         = regexp(file_content, patterns.dL, 'tokens', 'once');
+    dW_matches         = regexp(file_content, patterns.dW, 'tokens', 'once');
+    option_matches     = regexp(file_content, patterns.option, 'tokens', 'once');
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -100,6 +102,17 @@ function INPUT = READ_INPUT(filename)
     if ~isempty(dW_matches)
         INPUT.SETTINGS.dW = str2double(dW_matches{1});
     end
+
+    if strcmp(option_matches, 'instant')
+        if ~isempty(option_matches)
+            INPUT.SETTINGS.option = 1;
+        end
+    else
+        if ~isempty(option_matches)
+            INPUT.SETTINGS.option = 0;
+        end
+    end
+    
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

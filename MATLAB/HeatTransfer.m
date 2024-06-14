@@ -52,7 +52,9 @@ function HeatTransfer(DATA)
         end
         T = T_new; % Update T with the new values
 
-        T = SetBC(T, DATA, Lw, Lh);
+        if DATA.SETTINGS.option == 1
+            T = SetBC(T, DATA, Lw, Lh);
+        end
 
         % subplot(fig1);
         % surf(T)
