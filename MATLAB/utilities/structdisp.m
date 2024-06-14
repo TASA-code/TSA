@@ -22,7 +22,7 @@ function structdisp(s, indent)
             end
         elseif iscell(value)
             for j = 1:length(value)
-                fprintf('%s%s: \t%s\n', indent, [field,num2str(j)], mat2str(value{j}))
+                fprintf('%s%s: \t%s\n', indent, ['BC',num2str(j)], mat2str(value{j}))
             end
         else
             fprintf('%s%s: \t%s\n', indent, field, mat2str(value));

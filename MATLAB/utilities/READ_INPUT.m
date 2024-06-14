@@ -15,7 +15,7 @@ function INPUT = READ_INPUT(filename)
     INPUT.MODE      = '';
     INPUT.MODEL     = struct('NAME', '', 'L', '', 'W', '', 'alpha', '');
     INPUT.BC        = struct('T_init', '', 'conditions', {{}});
-    INPUT.SETTINGS  = struct('simT', '', 'dt', '', 'dL', '', 'dW', '', 'option', '');
+    INPUT.SETTINGS  = struct('simT', '', 'dt', '', 'dL', '', 'dW', '', 'opt', '');
 
     
     % Define patterns to match each section
@@ -105,10 +105,10 @@ function INPUT = READ_INPUT(filename)
 
     if strcmp(option_matches, 'instant')
         if ~isempty(option_matches)
-            INPUT.SETTINGS.option = 0;
+            INPUT.SETTINGS.opt = 0;
         end
     else
-        INPUT.SETTINGS.option = 1;
+        INPUT.SETTINGS.opt = 1;
     end
     
 

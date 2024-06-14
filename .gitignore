@@ -2,3 +2,5 @@
 C++/build/
 .vscode/
 .DS_Store
+docs/
+!main.pdf

@@ -1,4 +1,4 @@
-clear; %#ok<CLEAR0ARGS>
+clear;
 close all; clc
 
 addpath(genpath(pwd))

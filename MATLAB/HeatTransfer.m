@@ -21,8 +21,6 @@ function HeatTransfer(DATA)
     
     % Boundary conditions
     T = ones(Lh,Lw) * DATA.BC.T_init;
-    
-    % Set initial heat source in the middle
     T = SetBC(T, DATA, Lw, Lh);
 
 
@@ -52,7 +50,7 @@ function HeatTransfer(DATA)
         end
         T = T_new; % Update T with the new values
 
-        if DATA.SETTINGS.option == 1
+        if DATA.SETTINGS.opt == 1
             T = SetBC(T, DATA, Lw, Lh);
         end
 
