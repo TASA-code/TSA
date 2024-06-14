@@ -2,6 +2,9 @@
 ## (PTSA initialise)
 Preliminary Heat Simulation and Analysis (PTSA) is preliminary package that offers an insight on the diffusivity of thermal conduction through user defined boundary conditions and heat source. 
 
+> [!IMPORTANT]  
+> The C++ version of PTSA is still under debug phase and will be released after the problems are resolved.
+
 ```
 TITLE INPUT.txt
 
