@@ -38,8 +38,7 @@ END
 
 # Results 
 <p align="center">
-  <img src="MATLAB/output/3D_surf.png" width="400">
-  <img src="MATLAB/output/contour.png" width="400">
+  <img src="MATLAB/output/result.png" width="700">
 </p>
 
 
