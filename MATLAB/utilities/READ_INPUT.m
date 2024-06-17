@@ -14,7 +14,7 @@ function INPUT = READ_INPUT(filename)
     INPUT = struct();
     INPUT.MODE      = '';
     INPUT.MODEL     = struct('NAME', '', 'L', '', 'W', '', 'thick', '', 'alpha', '', 'k', '');
-    INPUT.BC        = struct('T_init', '', 'conditions', {{}});
+    INPUT.BC        = struct('T_0', '', 'conditions', {{}});
     INPUT.SETTINGS  = struct('simT', '', 'dt', '', 'dL', '', 'dW', '', 'opt', '');
 
     
@@ -28,7 +28,7 @@ function INPUT = READ_INPUT(filename)
     patterns.alpha    = 'alpha\s+([+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?)';
     patterns.k        = 'k\s+([+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?)';
 
-    patterns.T_init   = 'T_init\s+([\d.]+)';
+    patterns.T_init   = 'T_0\s+([\d.]+)';
     patterns.bc       = 'BC\d+\s+\[([^\]]+)\]'; % Pattern to match BC entries within square brackets
     
     patterns.simT     = 'simT\s+([\d.]+)';
@@ -87,7 +87,7 @@ function INPUT = READ_INPUT(filename)
 
 
     if ~isempty(Tinit_matches)
-        INPUT.BC.T_init = str2double(Tinit_matches{1});
+        INPUT.BC.T_0 = str2double(Tinit_matches{1});
     end
     % Process BC matches and store them in the INPUT structure
     if ~isempty(bc_matches)

@@ -1,13 +1,5 @@
 function HeatTransfer(DATA)
 
-    % filename = 'result.mp4';
-    % writerObj = VideoWriter(filename, 'MPEG-4');
-    % open(writerObj);
-
-    % figure;
-    % fig1 = subplot(2,4,1:4);
-    % fig2 = subplot(2,4,5:8);
-
     % Initializing all conditions pertaining the the function
     % Width
     w = DATA.MODEL.W;
@@ -35,7 +27,7 @@ function HeatTransfer(DATA)
 
 
     % Boundary conditions
-    T = ones(Lh,Lw) * DATA.BC.T_init;
+    T = ones(Lh,Lw) * DATA.BC.T_0;
     T = SetBC(T, DATA, Lw, Lh);
 
     % Run the function for each time interval
@@ -58,27 +50,6 @@ function HeatTransfer(DATA)
             T = SetBC(T, DATA, Lw, Lh);
         end
 
-        % subplot(fig1);
-        % surf(T)
-        % colorbar
-        % grid minor
-        % title(num2str(t))
-        % view([10.7092,28.5708])
-
-        % subplot(fig2);
-        % contourf(X,Y,T)
-        % colorbar
-        % grid minor
-        % xlabel('Plate width');
-        % ylabel('Plate height');
-        % zlabel('Temperature (K)');
-
-
-        % frame = getframe(gcf);
-        % writeVideo(writerObj, frame);
-
-        % drawnow;
-
     end
 
 
@@ -97,7 +68,7 @@ function HeatTransfer(DATA)
     view([10.7092,28.5708])
 
     subplot(2,4,[3,4,7,8])
-    contourf(X,Y,T)
+    contourf(X,Y,T,20)
     grid minor
     colorbar
     colormap("jet")
