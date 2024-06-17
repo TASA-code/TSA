@@ -1,4 +1,5 @@
 function structdisp(s, indent)
+     
     if nargin < 2
         indent = '|-';
     end

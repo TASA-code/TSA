@@ -3,26 +3,34 @@ TITLE INPUT.txt
 MODE  thermal
 MODEL 
         NAME    FS9
-        L       1.0
-        W       1.0
+        L       2.0
+        W       2.0
+        thick   0.01
         alpha   9.7e-5
+        k       237
         
 END
 BC
-        T_init    273.15
-        BC1      [0.38, 0.45, 0.35, 0.45, 700]
-        BC2      [0.75, 0.85, 0.75, 0.85, 800]
-        BC3      [0.75, 0.85, 0.25, 0.35, 600]
+        T_init    293.15
+        BC1      [0.7, 0.8, 0.2, 0.2, 0.05, 405, 15]
+        BC2      [0.3, 0.3, 0.1, 0.1, 0.05, 345, 15]
+        BC3      [0.9, 0.3, 0.1, 0.1, 0.1, 400, 15]
+        BC4      [0.2, 0.8, 0.1, 0.1, 0.1, 435, 15]
+        BC5      [0.7, 0.65, 0.2, 0.1, 0.1, 370, 15]
+
 END
 
 SETTINGS
-        simT    120
+        simT    600
         dt      0.1
-        dL      0.01
-        dW      0.01
+        dL      0.03
+        dW      0.03
         option  ''
 END
 
 
 
+
+
+# [x_coor, y_coor, length, width, thick, temp, k]
 

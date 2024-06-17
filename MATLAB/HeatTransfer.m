@@ -1,5 +1,13 @@
 function HeatTransfer(DATA)
 
+    % filename = 'result.mp4';
+    % writerObj = VideoWriter(filename, 'MPEG-4');
+    % open(writerObj);
+
+    % figure;
+    % fig1 = subplot(2,4,1:4);
+    % fig2 = subplot(2,4,5:8);
+
     % Initializing all conditions pertaining the the function
     % Width
     w = DATA.MODEL.W;
@@ -19,35 +27,31 @@ function HeatTransfer(DATA)
     % Aluminium
     a = DATA.MODEL.alpha;
     
+    % Meshgrid setup
+    x = linspace(0,w,Lw);
+    y = linspace(0,h,Lh);
+    [X, Y] = meshgrid(x,y);    
+
+
+
     % Boundary conditions
     T = ones(Lh,Lw) * DATA.BC.T_init;
     T = SetBC(T, DATA, Lw, Lh);
 
-
-    % Meshgrid setup
-    x = linspace(0,w,Lw);
-    y = linspace(0,h,Lh);
-    [X, Y] = meshgrid(x,y);
-
-    % filename = 'result.mp4';
-    % writerObj = VideoWriter(filename, 'MPEG-4');
-    % open(writerObj);
-
-    % figure;
-    % fig1 = subplot(2,4,1:4);
-    % fig2 = subplot(2,4,5:8);
-
-
     % Run the function for each time interval
     for t = 0:dt:T_sim
+
         T_new = T; % Create a copy of T to update values
+
         for i = 2:Lw-1
             for j = 2:Lh-1
                 term1 = (T(j, i-1) - 2*T(j,i) + T(j, i+1));
-                term2 = (T(j-1, i) - 2*T(j, i) + T(j+1, i));
-                T_new(j, i) = T(j, i) + a * dt * ((term1 / dw^2) + (term2 / dh^2));       
+                term2 = (T(j-1, i) - 2*T(j,i) + T(j+1, i));
+                T_new(j, i) = T(j, i) + a * dt * ((term1 / dw^2) + (term2 / dh^2));   
             end
         end
+
+
         T = T_new; % Update T with the new values
 
         if DATA.SETTINGS.opt == 1
@@ -80,24 +84,28 @@ function HeatTransfer(DATA)
 
     % close(writerObj)
 
-    
+    figure();
+    set(gcf, 'Position', [485,428,939,472])
+    sgtitle(['Temperature function after ', num2str(T_sim), ' sec']);
 
-    % Display Result
-    figure()
+
+    subplot(2,4,[1,2,5,6])
+    surf(X,Y,T)
+    grid minor
+    colorbar
+    colormap("jet")
+    view([10.7092,28.5708])
+
+    subplot(2,4,[3,4,7,8])
     contourf(X,Y,T)
     grid minor
     colorbar
-    
-    figure()
-    surf(T)
-    grid minor
-    colorbar
-    view([10.7092,28.5708])
-    
+    colormap("jet")
     % Legend and label
     xlabel('Plate width');
     ylabel('Plate height');
     zlabel('Temperature (K)');
-    legend(['Temperature function after ', num2str(T_sim), ' sec'], 'Location', 'NorthEast');
+
+    saveas(gcf, 'output/result.png')
 
 end

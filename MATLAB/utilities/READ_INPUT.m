@@ -13,7 +13,7 @@ function INPUT = READ_INPUT(filename)
     % Initialize INPUT structure
     INPUT = struct();
     INPUT.MODE      = '';
-    INPUT.MODEL     = struct('NAME', '', 'L', '', 'W', '', 'alpha', '');
+    INPUT.MODEL     = struct('NAME', '', 'L', '', 'W', '', 'thick', '', 'alpha', '', 'k', '');
     INPUT.BC        = struct('T_init', '', 'conditions', {{}});
     INPUT.SETTINGS  = struct('simT', '', 'dt', '', 'dL', '', 'dW', '', 'opt', '');
 
@@ -24,7 +24,9 @@ function INPUT = READ_INPUT(filename)
     patterns.name     = 'NAME\s+(\w+)';
     patterns.length   = 'L\s+([\d.]+)';
     patterns.width    = 'W\s+([\d.]+)';
+    patterns.thick    = 'thick\s+([\d.]+)';
     patterns.alpha    = 'alpha\s+([+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?)';
+    patterns.k        = 'k\s+([+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?)';
 
     patterns.T_init   = 'T_init\s+([\d.]+)';
     patterns.bc       = 'BC\d+\s+\[([^\]]+)\]'; % Pattern to match BC entries within square brackets
@@ -43,7 +45,9 @@ function INPUT = READ_INPUT(filename)
     INPUT.MODEL.NAME   = regexp(file_content, patterns.name, 'tokens', 'once');
     L_matches          = regexp(file_content, patterns.length, 'tokens', 'once');
     W_matches          = regexp(file_content, patterns.width, 'tokens', 'once');
+    thick_matches      = regexp(file_content, patterns.thick, 'tokens', 'once');
     alpha_matches      = regexp(file_content, patterns.alpha, 'tokens', 'once');
+    k_matches          = regexp(file_content, patterns.k, 'tokens', 'once');
 
     Tinit_matches      = regexp(file_content, patterns.T_init, 'tokens', 'once');
     bc_matches         = regexp(file_content, patterns.bc, 'tokens');
@@ -71,8 +75,14 @@ function INPUT = READ_INPUT(filename)
     if ~isempty(W_matches)
         INPUT.MODEL.W = str2double(W_matches{1});
     end
+    if ~isempty(thick_matches)
+        INPUT.MODEL.thick = str2double(thick_matches{1});
+    end
     if ~isempty(alpha_matches)
         INPUT.MODEL.alpha = str2double(alpha_matches{1});
+    end
+    if ~isempty(k_matches)
+        INPUT.MODEL.k = str2double(k_matches{1});
     end
 
 
