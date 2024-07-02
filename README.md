@@ -37,6 +37,8 @@ SETTINGS
 END
 ```
 
+$$\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2} = \nabla^2 T $$
+
 # Results 
 <p align="center">
   <img src="MATLAB/output/result.png" width="700">
