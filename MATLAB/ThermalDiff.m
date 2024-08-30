@@ -1,4 +1,4 @@
-function HeatTransfer(DATA)
+function ThermalDiff(DATA)
 
     % Initializing all conditions pertaining the the function
     % Width
@@ -60,15 +60,15 @@ function HeatTransfer(DATA)
     sgtitle(['Temperature function after ', num2str(T_sim), ' sec']);
 
 
-    subplot(2,4,[1,2,5,6])
-    surf(X,Y,T)
-    grid minor
-    colorbar
-    colormap("jet")
-    view([10.7092,28.5708])
+    % subplot(2,4,[1,2,5,6])
+    % surf(X,Y,T)
+    % grid minor
+    % colorbar
+    % colormap("jet")
+    % view([10.7092,28.5708])
 
-    subplot(2,4,[3,4,7,8])
-    contourf(X,Y,T,20)
+    % subplot(2,4,[3,4,7,8])
+    contourf(X,Y,T,60)
     grid minor
     colorbar
     colormap("jet")
@@ -76,7 +76,7 @@ function HeatTransfer(DATA)
     xlabel('Plate width');
     ylabel('Plate height');
     zlabel('Temperature (K)');
-
+    axis equal
     saveas(gcf, 'output/result.png')
 
 end
